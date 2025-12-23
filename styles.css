@@ -1,0 +1,459 @@
+/* ============================================
+   SISTEMA DE PROYECCIONES CARTOGRÁFICAS
+   Archivo: styles.css
+   
+   Este archivo contiene todos los estilos CSS
+   para la aplicación. El diseño es futurista/cyberpunk
+   con colores neón y efectos de brillo.
+   
+   Elaborado por: John Leonardo Cabrera Espíndola
+============================================ */
+
+/* ============================================
+   RESET Y ESTILOS BASE
+   Eliminamos márgenes y paddings por defecto
+   y establecemos box-sizing para cálculos
+   consistentes de tamaños.
+============================================ */
+* {
+    box-sizing: border-box;  /* El padding y border se incluyen en el width/height */
+    margin: 0;               /* Eliminamos márgenes por defecto */
+    padding: 0;              /* Eliminamos padding por defecto */
+}
+
+/* Aseguramos que html y body ocupen toda la altura de la ventana */
+html, body {
+    height: 100%;
+}
+
+/* Evitamos scroll horizontal no deseado */
+body {
+    overflow-x: hidden;
+}
+
+/* ============================================
+   SCROLLBAR PERSONALIZADA
+   Estilizamos la barra de scroll para que
+   coincida con el tema cyberpunk.
+============================================ */
+::-webkit-scrollbar {
+    width: 5px;  /* Ancho de la barra de scroll */
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);  /* Fondo del track (pista) */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #00f5ff;     /* Color del "pulgar" (parte móvil) */
+    border-radius: 3px;      /* Bordes redondeados */
+}
+
+/* ============================================
+   ANIMACIONES CSS
+   Definimos las animaciones que se usarán
+   en diferentes elementos de la interfaz.
+============================================ */
+
+/* Animación de pulso: hace que un elemento
+   aparezca y desaparezca suavemente */
+@keyframes pulse {
+    0%, 100% { 
+        opacity: 1;      /* Totalmente visible al inicio y final */
+    }
+    50% { 
+        opacity: 0.5;    /* Semi-transparente en el punto medio */
+    }
+}
+
+/* Animación de brillo del borde: cambia la
+   intensidad del color del borde */
+@keyframes borderGlow {
+    0%, 100% { 
+        border-color: rgba(0, 245, 255, 0.5);  /* Brillo bajo */
+    }
+    50% { 
+        border-color: rgba(0, 245, 255, 0.8);  /* Brillo alto */
+    }
+}
+
+/* Animación de flotación: mueve un elemento
+   hacia arriba y abajo suavemente */
+@keyframes float {
+    0%, 100% { 
+        transform: translateY(0);      /* Posición original */
+    }
+    50% { 
+        transform: translateY(-10px);  /* Sube 10 píxeles */
+    }
+}
+
+/* ============================================
+   PANEL CYBERPUNK
+   Estilo base para los paneles/tarjetas
+   de la interfaz. Tienen un fondo degradado
+   oscuro con bordes brillantes.
+============================================ */
+.cyber-panel {
+    /* Fondo con degradado diagonal */
+    background: linear-gradient(
+        135deg, 
+        rgba(13, 26, 45, 0.95) 0%,    /* Azul oscuro arriba-izquierda */
+        rgba(5, 10, 18, 0.98) 100%    /* Casi negro abajo-derecha */
+    );
+    
+    /* Borde semi-transparente color cian */
+    border: 1px solid rgba(0, 245, 255, 0.3);
+    border-radius: 4px;          /* Bordes ligeramente redondeados */
+    position: relative;          /* Para posicionar pseudo-elementos */
+    overflow: hidden;            /* Oculta contenido que se desborde */
+    
+    /* Efecto de desenfoque del fondo (efecto cristal) */
+    backdrop-filter: blur(20px);
+}
+
+/* Línea brillante en la parte superior del panel */
+.cyber-panel::before {
+    content: '';                 /* Pseudo-elemento vacío */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;                 /* Altura de la línea */
+    
+    /* Degradado horizontal que va de transparente a cian y de vuelta */
+    background: linear-gradient(90deg, transparent, #00f5ff, transparent);
+    
+    /* Aplicamos la animación de brillo */
+    animation: borderGlow 2s infinite;
+}
+
+/* ============================================
+   TEXTO CON EFECTO NEÓN
+   Añade un resplandor alrededor del texto
+   para simular luces de neón.
+============================================ */
+.neon-text {
+    /* Múltiples sombras de texto para crear el efecto de brillo */
+    text-shadow: 
+        0 0 10px currentColor,   /* Brillo cercano */
+        0 0 20px currentColor;   /* Brillo lejano */
+}
+
+/* ============================================
+   CAMPOS DE ENTRADA (INPUT Y SELECT)
+   Estilo para inputs de texto y selectores
+   con tema cyberpunk.
+============================================ */
+.cyber-input,
+.cyber-select {
+    background: rgba(0, 10, 20, 0.8);        /* Fondo oscuro semi-transparente */
+    border: 1px solid rgba(0, 245, 255, 0.4); /* Borde cian semi-transparente */
+    border-radius: 2px;
+    padding: 8px 10px;
+    color: #00f5ff;                           /* Texto color cian */
+    font-family: 'Share Tech Mono', monospace; /* Fuente monoespaciada */
+    font-size: 12px;
+    outline: none;                            /* Quitamos el outline por defecto */
+    width: 100%;                              /* Ocupa todo el ancho disponible */
+}
+
+/* Estilo cuando el input está enfocado (activo) */
+.cyber-input:focus {
+    border-color: #00f5ff;                    /* Borde más brillante */
+    box-shadow: 0 0 15px rgba(0, 245, 255, 0.3); /* Resplandor alrededor */
+}
+
+/* El select tiene cursor de puntero para indicar que es clickeable */
+.cyber-select {
+    cursor: pointer;
+}
+
+/* Estilo para las opciones del select */
+.cyber-select option {
+    background: #0a1628;  /* Fondo oscuro */
+}
+
+/* ============================================
+   BOTONES CYBERPUNK
+   Botones con estilo neón y efectos hover.
+============================================ */
+.cyber-btn {
+    padding: 8px 14px;
+    border: 1px solid;
+    border-radius: 2px;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 600;
+    font-size: 11px;
+    cursor: pointer;
+    transition: all 0.3s ease;    /* Transición suave para efectos hover */
+    text-transform: uppercase;    /* Texto en mayúsculas */
+    letter-spacing: 1px;          /* Espaciado entre letras */
+}
+
+/* Botón primario (color cian) */
+.cyber-btn-primary {
+    /* Fondo con degradado cian semi-transparente */
+    background: linear-gradient(
+        135deg, 
+        rgba(0, 245, 255, 0.2) 0%, 
+        rgba(0, 245, 255, 0.1) 100%
+    );
+    border-color: #00f5ff;
+    color: #00f5ff;
+}
+
+/* Efecto hover del botón primario */
+.cyber-btn-primary:hover {
+    background: rgba(0, 245, 255, 0.3);
+    box-shadow: 0 0 20px rgba(0, 245, 255, 0.4);  /* Resplandor */
+}
+
+/* Botón de peligro/eliminar (color magenta) */
+.cyber-btn-danger {
+    background: rgba(255, 0, 110, 0.1);
+    border-color: #ff006e;
+    color: #ff006e;
+}
+
+/* ============================================
+   SELECTOR DE COLOR (ORBES)
+   Botones circulares para seleccionar el
+   color del polígono.
+============================================ */
+.color-orb {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;          /* Círculo perfecto */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+/* Efecto hover: aumenta el tamaño */
+.color-orb:hover {
+    transform: scale(1.15);
+}
+
+/* Orbe activo (seleccionado): tiene brillo y está ligeramente agrandado */
+.color-orb.active {
+    box-shadow: 0 0 12px currentColor;  /* Resplandor del color actual */
+    transform: scale(1.1);
+}
+
+/* ============================================
+   CONTENEDOR DEL PLANO 2D
+   Área donde se dibuja la proyección 2D
+   con una cuadrícula de fondo.
+============================================ */
+.plane-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 350px;           /* Altura mínima */
+    
+    /* Fondo con múltiples capas:
+       1. Cuadrícula horizontal (latitud)
+       2. Cuadrícula vertical (longitud)
+       3. Degradado radial de fondo */
+    background: 
+        /* Líneas horizontales cada 5% */
+        repeating-linear-gradient(
+            0deg, 
+            transparent, 
+            transparent 4.9%, 
+            rgba(0, 245, 255, 0.08) 5%
+        ),
+        /* Líneas verticales cada 5% */
+        repeating-linear-gradient(
+            90deg, 
+            transparent, 
+            transparent 4.9%, 
+            rgba(0, 245, 255, 0.08) 5%
+        ),
+        /* Degradado de fondo */
+        radial-gradient(
+            ellipse at center, 
+            rgba(0, 40, 60, 0.6) 0%, 
+            rgba(0, 10, 20, 0.9) 100%
+        );
+    
+    border-radius: 4px;
+    cursor: crosshair;           /* Cursor en forma de cruz para precisión */
+    overflow: hidden;
+    border: 1px solid rgba(0, 245, 255, 0.3);
+}
+
+/* ============================================
+   CROSSHAIR (CURSOR DE MIRA)
+   Cruz que sigue al cursor del mouse en
+   el plano 2D para mayor precisión.
+============================================ */
+.crosshair {
+    position: absolute;
+    pointer-events: none;        /* No interfiere con clics */
+    z-index: 10;                 /* Por encima de otros elementos */
+}
+
+/* Línea vertical del crosshair */
+.crosshair::before {
+    content: '';
+    position: absolute;
+    background: rgba(0, 245, 255, 0.8);
+    width: 1px;
+    height: 24px;
+    left: 50%;
+    top: -12px;
+    transform: translateX(-50%);
+}
+
+/* Línea horizontal del crosshair */
+.crosshair::after {
+    content: '';
+    position: absolute;
+    background: rgba(0, 245, 255, 0.8);
+    height: 1px;
+    width: 24px;
+    top: 50%;
+    left: -12px;
+    transform: translateY(-50%);
+}
+
+/* ============================================
+   DISPLAY DE COORDENADAS
+   Tooltip que muestra las coordenadas
+   actuales del cursor.
+============================================ */
+.coord-display {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.9);
+    border: 1px solid #00f5ff;
+    padding: 4px 8px;
+    font-size: 9px;
+    font-family: 'Share Tech Mono', monospace;
+    color: #00f5ff;
+    pointer-events: none;        /* No interfiere con el mouse */
+    white-space: nowrap;         /* Evita que el texto se rompa */
+    z-index: 20;
+    border-radius: 2px;
+}
+
+/* ============================================
+   TARJETAS DE INFORMACIÓN
+   Contenedores para mostrar datos geodésicos
+   y teóricos.
+============================================ */
+.info-card {
+    background: rgba(0, 20, 40, 0.5);
+    border: 1px solid rgba(0, 245, 255, 0.15);
+    border-radius: 3px;
+    padding: 10px;
+    margin-bottom: 8px;
+}
+
+/* Título de la tarjeta de información */
+.info-card h4 {
+    color: #00f5ff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 10px;
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+}
+
+/* Texto dentro de la tarjeta */
+.info-card p,
+.info-card li {
+    color: rgba(200, 220, 240, 0.8);
+    font-size: 10px;
+    line-height: 1.4;
+}
+
+/* Listas dentro de la tarjeta */
+.info-card ul {
+    padding-left: 12px;
+    margin-top: 4px;
+}
+
+/* ============================================
+   FILAS DE DATOS
+   Formato para mostrar etiqueta: valor
+   en una fila horizontal.
+============================================ */
+.data-row {
+    display: flex;
+    justify-content: space-between;  /* Etiqueta a la izquierda, valor a la derecha */
+    padding: 4px 0;
+    border-bottom: 1px solid rgba(0, 245, 255, 0.1);
+    font-size: 10px;
+}
+
+/* Etiqueta (nombre del dato) */
+.data-label {
+    color: rgba(0, 245, 255, 0.6);
+}
+
+/* Valor del dato */
+.data-value {
+    color: #00ff88;                   /* Verde neón */
+    font-family: 'Share Tech Mono', monospace;
+}
+
+/* ============================================
+   BOTONES DE PESTAÑAS (TABS)
+   Botones para cambiar entre paneles
+   de Control, Geodesia, UTM y Teoría.
+============================================ */
+.tab-btn {
+    padding: 6px 10px;
+    background: transparent;
+    border: 1px solid rgba(0, 245, 255, 0.3);
+    color: rgba(0, 245, 255, 0.6);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    letter-spacing: 1px;
+}
+
+/* Pestaña activa (seleccionada) */
+.tab-btn.active {
+    background: rgba(0, 245, 255, 0.2);
+    border-color: #00f5ff;
+    color: #00f5ff;
+}
+
+/* ============================================
+   FÓRMULAS MATEMÁTICAS
+   Estilo para mostrar ecuaciones y fórmulas.
+============================================ */
+.formula {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 6px 10px;
+    border-radius: 2px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: #ffbe0b;              /* Dorado para destacar */
+    margin: 6px 0;
+    border-left: 2px solid #ffbe0b;  /* Línea lateral decorativa */
+}
+
+/* ============================================
+   CLASES DE UTILIDAD
+   Clases reutilizables para estilos comunes.
+============================================ */
+
+/* Texto destacado (color cian) */
+.highlight {
+    color: #00f5ff;
+    font-weight: bold;
+}
+
+/* Texto de advertencia (color magenta) */
+.warning {
+    color: #ff006e;
+}
+
+/* Texto de éxito/positivo (color verde) */
+.success {
+    color: #00ff88;
+}

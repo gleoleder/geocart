@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- ============================================
+         SISTEMA DE PROYECCIONES CARTOGRÁFICAS
+         Elaborado por: John Leonardo Cabrera Espíndola
+         Carrera: Ingeniería Geográfica
+         
+         Archivo principal HTML que carga la aplicación.
+    ============================================ -->
+    
+    <!-- Codificación UTF-8 para caracteres especiales -->
+    <meta charset="UTF-8">
+    
+    <!-- Configuración responsive para móviles -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Título de la página -->
+    <title>Sistema de Proyecciones Cartográficas - Ingeniería Geográfica</title>
+    
+    <!-- ============================================
+         BIBLIOTECAS EXTERNAS (CDN)
+    ============================================ -->
+    
+    <!-- React: Biblioteca para interfaces de usuario -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    
+    <!-- ReactDOM: Renderiza componentes React en el DOM -->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    
+    <!-- Babel: Transpila JSX a JavaScript estándar -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Three.js: Gráficos 3D para la esfera -->
+    <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+    
+    <!-- ============================================
+         FUENTES DE GOOGLE
+    ============================================ -->
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    
+    <!-- ============================================
+         ESTILOS CSS
+    ============================================ -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- ============================================
+         CONTENEDOR PRINCIPAL
+         React renderiza la aplicación aquí.
+    ============================================ -->
+    <div id="root"></div>
+    
+    <!-- ============================================
+         SCRIPT PRINCIPAL
+         Contiene todo el código JavaScript/React.
+         type="text/babel" permite usar JSX.
+    ============================================ -->
+    <script type="text/babel" src="script.js"></script>
+</body>
+</html>
